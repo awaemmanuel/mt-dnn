@@ -287,7 +287,7 @@ class MTDNNModel(object):
             'config': self.config,
         }
         torch.save(params, filename)
-        logger.info('model_utils saved to {}'.format(filename))
+        logger.info('models saved to {}'.format(filename))
 
     def load(self, checkpoint):
 

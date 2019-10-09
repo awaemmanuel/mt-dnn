@@ -111,10 +111,10 @@ class BatchGen:
             if self.task_type == TaskType.Ranking:
                 batch = self.rebacth(batch)
 
-            # prepare model_utils input
+            # prepare models input
             batch_data, batch_info = self._prepare_model_input(batch)
             batch_info['task_id'] = self.task_id  # used for select correct decoding head
-            batch_info['input_len'] = len(batch_data)  # used to select model_utils inputs
+            batch_info['input_len'] = len(batch_data)  # used to select models inputs
             # select different loss function and other difference in training and testing
             batch_info['task_type'] = self.task_type
             batch_info['pairwise_size'] = self.pairwise_size  # need for ranking task
@@ -125,7 +125,7 @@ class BatchGen:
             # add label
             labels = [sample['label'] for sample in batch]
             if self.is_train:
-                # in training model_utils, label is used by Pytorch, so would be tensor
+                # in training models, label is used by Pytorch, so would be tensor
                 if self.task_type == TaskType.Regression:
                     batch_data.append(torch.FloatTensor(labels))
                     batch_info['label'] = len(batch_data) - 1
@@ -146,7 +146,7 @@ class BatchGen:
                     sortlabels = torch.FloatTensor(sortlabels)
                     batch_info['soft_label'] = self.patch(sortlabels.pin_memory()) if self.gpu else sortlabels
             else:
-                # in test model_utils, label would be used for evaluation
+                # in test models, label would be used for evaluation
                 batch_info['label'] = labels
                 if self.task_type == TaskType.Ranking:
                     batch_info['true_label'] = [sample['true_label'] for sample in batch]

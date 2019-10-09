@@ -15,8 +15,8 @@ from src.mt_dnn.experiments.glue import submit, eval_model
 from src.mt_dnn.data_utils import create_logger
 from src.mt_dnn.data_utils.utils import set_environment
 from src.mt_dnn.data_utils import TaskType, EncoderModelType
-from src.mt_dnn.model_utils import BatchGen
-from src.mt_dnn.model_utils.model import MTDNNModel
+from src.mt_dnn.models import BatchGen
+from src.mt_dnn.models.model import MTDNNModel
 
 
 def model_config(parser):
@@ -289,30 +289,30 @@ def main():
             opt.update(config)
         else:
             logger.error('#' * 20)
-            logger.error('Could not find the init model_utils!\n The parameters will be initialized randomly!')
+            logger.error('Could not find the init models!\n The parameters will be initialized randomly!')
             logger.error('#' * 20)
             config = BertConfig(vocab_size_or_config_json_file=30522).to_dict()
             opt.update(config)
     elif encoder_type == EncoderModelType.ROBERTA:
-        bert_model_path = '{}/model_utils.pt'.format(bert_model_path)
+        bert_model_path = '{}/models.pt'.format(bert_model_path)
         if os.path.exists(bert_model_path):
             new_state_dict = {}
             state_dict = torch.load(bert_model_path)
-            for key, val in state_dict['model_utils'].items():
+            for key, val in state_dict['models'].items():
                 if key.startswith('decoder.sentence_encoder'):
-                    key = 'bert.model_utils.{}'.format(key)
+                    key = 'bert.models.{}'.format(key)
                     new_state_dict[key] = val
                 elif key.startswith('classification_heads'):
-                    key = 'bert.model_utils.{}'.format(key)
+                    key = 'bert.models.{}'.format(key)
                     new_state_dict[key] = val
             state_dict = {'state': new_state_dict}
 
     model = MTDNNModel(opt, state_dict=state_dict, num_train_step=num_all_batches)
     if args.resume and args.model_ckpt:
-        logger.info('loading model_utils from {}'.format(args.model_ckpt))
+        logger.info('loading models from {}'.format(args.model_ckpt))
         model.load(args.model_ckpt)
 
-    #### model_utils meta str
+    #### models meta str
     headline = '############# Model Arch of MT-DNN #############'
     ### print network
     logger.info('\n{}\n{}\n'.format(headline, model.network))
@@ -375,7 +375,7 @@ def main():
 
             if args.save_per_updates_on and ((model.local_updates) % (args.save_per_updates * args.grad_accumulation_step) == 0):
                 model_file = os.path.join(output_dir, 'model_{}_{}.pt'.format(epoch, model.updates))
-                logger.info('Saving mt-dnn model_utils to {}'.format(model_file))
+                logger.info('Saving mt-dnn models to {}'.format(model_file))
                 model.save(model_file)
 
         for idx, dataset in enumerate(args.test_datasets):

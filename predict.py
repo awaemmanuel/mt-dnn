@@ -6,8 +6,8 @@ import torch
 from src.mt_dnn.experiments.exp_def import TaskDefs, EncoderModelType
 #from experiments.glue.glue_utils import eval_model
 
-from src.mt_dnn.model_utils import BatchGen
-from src.mt_dnn.model_utils.model import MTDNNModel
+from src.mt_dnn.models import BatchGen
+from src.mt_dnn.models.model import MTDNNModel
 from src.mt_dnn.data_utils import calc_metrics
 
 def dump(path, data):
@@ -61,7 +61,7 @@ data_type = task_defs.data_type_map[args.task]
 task_type = task_defs.task_type_map[args.task]
 metric_meta = task_defs.metric_meta_map[args.task]
 
-# load model_utils
+# load models
 checkpoint_path = args.checkpoint
 assert os.path.exists(checkpoint_path)
 if args.cuda:

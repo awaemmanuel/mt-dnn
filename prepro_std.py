@@ -416,7 +416,7 @@ def load_data(file_path, data_format, task_type, label_dict=None):
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Preprocessing GLUE/SNLI/SciTail dataset.')
-    parser.add_argument('--model_utils', type=str, default='bert-base-uncased',
+    parser.add_argument('--models', type=str, default='bert-base-uncased',
                         help='bert-base-uncased/bert-large-uncased/xlnet-large-cased/reberta-large')
     parser.add_argument('--do_lower_case', action='store_true')
     parser.add_argument('--root_dir', type=str, default='data/canonical_data')
@@ -450,7 +450,7 @@ def main(args):
     if encoder_model == EncoderModelType.ROBERTA:
         if args.roberta_path is None or (
                 not os.path.exists(args.roberta_path)):
-            print('Please specify roberta model_utils path')
+            print('Please specify roberta models path')
         encoder = get_encoder('{}/encoder.json'.format(args.roberta_path),
                               '{}/vocab.bpe'.format(args.roberta_path))
         vocab = load_dict('{}/ict.txt'.format(args.roberta_path))
@@ -459,9 +459,9 @@ def main(args):
     elif encoder_model == EncoderModelType.XLNET:
         tokenizer = spm.SentencePieceProcessor()
         if 'large' in args.model:
-            tokenizer.load('mt_dnn_models/xlnet_large_cased_spiece.model_utils')
+            tokenizer.load('mt_dnn_models/xlnet_large_cased_spiece.models')
         else:
-            tokenizer.load('mt_dnn_models/xlnet_base_cased_spiece.model_utils')
+            tokenizer.load('mt_dnn_models/xlnet_base_cased_spiece.models')
     else:
         tokenizer = BertTokenizer.from_pretrained(
             args.model, do_lower_case=do_lower_case)
