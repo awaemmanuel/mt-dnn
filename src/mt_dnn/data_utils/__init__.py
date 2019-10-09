@@ -2,7 +2,7 @@ import json
 
 import numpy as np
 
-from data_utils.task_def import TaskType, DataFormat
+from src.mt_dnn.data_utils import TaskType, DataFormat
 
 
 def load_data(file_path, data_format, task_type, label_dict=None):

@@ -1,7 +1,7 @@
 import yaml
-from data_utils.vocab import Vocabulary
-from data_utils.task_def import TaskType, DataFormat, EncoderModelType
-from data_utils.metrics import Metric
+from src.mt_dnn.data_utils import Vocabulary
+from src.mt_dnn.data_utils import TaskType, DataFormat, EncoderModelType
+from src.mt_dnn.data_utils import Metric
 
 class TaskDefs:
     def __init__(self, task_def_path):

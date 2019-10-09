@@ -1,6 +1,6 @@
 from pytorch_pretrained_bert import BertTokenizer
-from data_utils.task_def import EncoderModelType
-from experiments.squad.squad_utils import calc_tokenized_span_range, parse_squad_label
+from src.mt_dnn.data_utils import EncoderModelType
+from src.mt_dnn.experiments.squad import calc_tokenized_span_range, parse_squad_label
 
 model = "bert-base-uncased"
 do_lower_case = True

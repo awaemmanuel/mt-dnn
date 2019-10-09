@@ -1,8 +1,8 @@
 import argparse
 
-from data_utils import load_data, load_score_file
-from data_utils.metrics import calc_metrics
-from experiments.exp_def import TaskDefs
+from src.mt_dnn.data_utils import load_data, load_score_file
+from src.mt_dnn.data_utils import calc_metrics
+from src.mt_dnn.experiments.exp_def import TaskDefs
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--task_def", type=str, default="experiments/glue/glue_task_def.yml")

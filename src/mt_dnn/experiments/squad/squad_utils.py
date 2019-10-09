@@ -1,4 +1,4 @@
-from data_utils.task_def import EncoderModelType
+from src.mt_dnn.data_utils import EncoderModelType
 
 
 def calc_tokenized_span_range(context, question, answer, answer_start, answer_end, tokenizer, encoderModelType,

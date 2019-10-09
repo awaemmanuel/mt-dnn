@@ -10,13 +10,13 @@ import torch
 from pytorch_pretrained_bert.modeling import BertConfig
 from tensorboardX import SummaryWriter
 #from torch.utils.tensorboard import SummaryWriter
-from experiments.exp_def import TaskDefs
-from experiments.glue.glue_utils import submit, eval_model
-from data_utils.log_wrapper import create_logger
-from data_utils.utils import set_environment
-from data_utils.task_def import TaskType, EncoderModelType
-from mt_dnn.batcher import BatchGen
-from mt_dnn.model import MTDNNModel
+from src.mt_dnn.experiments.exp_def import TaskDefs
+from src.mt_dnn.experiments.glue import submit, eval_model
+from src.mt_dnn.data_utils import create_logger
+from src.mt_dnn.data_utils.utils import set_environment
+from src.mt_dnn.data_utils import TaskType, EncoderModelType
+from src.mt_dnn.model import BatchGen
+from src.mt_dnn.model.model import MTDNNModel
 
 
 def model_config(parser):

@@ -15,8 +15,8 @@ import numpy as np
 from pytorch_pretrained_bert.modeling import BertConfig
 from sys import path
 path.append(os.getcwd())
-from mt_dnn.matcher import SANBertNetwork
-from data_utils.log_wrapper import create_logger
+from src.mt_dnn.model.matcher import SANBertNetwork
+from src.mt_dnn.data_utils import create_logger
 
 logger =  create_logger(__name__, to_disk=False)
 def model_config(parser):

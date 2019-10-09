@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft. All rights reserved.
 
-from data_utils.vocab import Vocabulary
-from data_utils.metrics import compute_acc, compute_f1, compute_mcc, compute_pearson, compute_spearman
+from src.mt_dnn.data_utils import Vocabulary
+from src.mt_dnn.data_utils import compute_acc, compute_f1, compute_mcc, compute_pearson, compute_spearman
 
 # scitail
 ScitailLabelMapper = Vocabulary(True)

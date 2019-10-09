@@ -3,8 +3,8 @@ import argparse
 from sys import path
 import json
 path.append(os.getcwd())
-from data_utils.log_wrapper import create_logger
-from experiments.common_utils import dump_rows
+from src.mt_dnn.data_utils import create_logger
+from src.mt_dnn.experiments.common_utils import dump_rows
 
 logger = create_logger(__name__, to_disk=True, log_file='squad_prepro.log')
 

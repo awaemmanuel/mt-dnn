@@ -6,12 +6,12 @@ import argparse
 import torch
 import json
 from pytorch_pretrained_bert.tokenization import BertTokenizer
-from data_utils.log_wrapper import create_logger
-from data_utils.utils import set_environment
-from mt_dnn.batcher import BatchGen
-from mt_dnn.model import MTDNNModel
+from src.mt_dnn.data_utils import create_logger
+from src.mt_dnn.data_utils.utils import set_environment
+from src.mt_dnn.model import BatchGen
+from src.mt_dnn.model.model import MTDNNModel
 from prepro_std import _truncate_seq_pair
-from data_utils.task_def import DataFormat, EncoderModelType, TaskType
+from src.mt_dnn.data_utils import DataFormat, EncoderModelType
 
 logger = create_logger(
     __name__,
