@@ -8,8 +8,8 @@ import json
 from pytorch_pretrained_bert.tokenization import BertTokenizer
 from src.mt_dnn.data_utils import create_logger
 from src.mt_dnn.data_utils.utils import set_environment
-from src.mt_dnn.model import BatchGen
-from src.mt_dnn.model.model import MTDNNModel
+from src.mt_dnn.model_utils import BatchGen
+from src.mt_dnn.model_utils.model import MTDNNModel
 from prepro_std import _truncate_seq_pair
 from src.mt_dnn.data_utils import DataFormat, EncoderModelType
 
@@ -157,11 +157,11 @@ def set_config(parser):
     parser.add_argument("--finput", default=None, type=str, required=True)
     parser.add_argument("--foutput", default=None, type=str, required=True)
     parser.add_argument("--bert_model", default=None, type=str, required=True,
-        help='Bert model: bert-base-uncased')
+        help='Bert model_utils: bert-base-uncased')
     parser.add_argument( "--checkpoint", default=None, type=str, required=True,
-        help='model parameters')
+        help='model_utils parameters')
     parser.add_argument( "--do_lower_case", action='store_true',
-        help="Set this flag if you are using an uncased model.")
+        help="Set this flag if you are using an uncased model_utils.")
     parser.add_argument("--layers", default="10,11", type=str)
     parser.add_argument("--max_seq_length", default=512, type=int, help='')
     parser.add_argument("--batch_size", default=4, type=int)
@@ -202,7 +202,7 @@ def main():
         data_type=data_type)
     batcher.reset()
     opt = vars(args)
-    # load model
+    # load model_utils
     if os.path.exists(args.checkpoint):
         state_dict = torch.load(args.checkpoint)
         config = state_dict['config']
@@ -211,7 +211,7 @@ def main():
     else:
         logger.error('#' * 20)
         logger.error(
-            'Could not find the init model!\n The parameters will be initialized randomly!')
+            'Could not find the init model_utils!\n The parameters will be initialized randomly!')
         logger.error('#' * 20)
         return
     num_all_batches = len(batcher)

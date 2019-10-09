@@ -21,12 +21,12 @@ wget https://mrc.blob.core.windows.net/mt-dnn-model/mt_dnn_large.pt -O "${BERT_D
 ## MT-DNN-KD
 wget https://mrc.blob.core.windows.net/mt-dnn-model/mt_dnn_kd_large_cased.pt -O "${BERT_DIR}/mt_dnn_kd_large_cased.pt"
 
-## Download XLNet model
+## Download XLNet model_utils
 wget https://storage.googleapis.com/xlnet/released_models/cased_L-24_H-1024_A-16.zip -O "xlnet_cased_large.zip"
 unzip xlnet_cased_large.zip 
-mv xlnet_cased_L-24_H-1024_A-16/spiece.model "${BERT_DIR}/xlnet_large_cased_spiece.model"
+mv xlnet_cased_L-24_H-1024_A-16/spiece.model "${BERT_DIR}/xlnet_large_cased_spiece.model_utils"
 rm -rf *.zip xlnet_cased_L-24_H-1024_A-16
-## download converted xlnet pytorch model
+## download converted xlnet pytorch model_utils
 wget https://mrc.blob.core.windows.net/mt-dnn-model/xlnet_model_large_cased.pt -O "${BERT_DIR}/xlnet_model_large_cased.pt"
 
 

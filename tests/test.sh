@@ -12,7 +12,7 @@ WORKDIR=`mktemp -d $SRCDIR/mt-dnn-tests-XXX`
 mkdir -p $WORKDIR/mt_dnn_models
 mkdir -p $WORKDIR/checkpoints
 
-#download pre-trained BERT model
+#download pre-trained BERT model_utils
 wget https://mrc.blob.core.windows.net/mt-dnn-model/bert_model_base_v2.pt -O $WORKDIR/mt_dnn_models/bert_model_base_uncased.pt
 
 # download vocab file for BERT
@@ -42,7 +42,7 @@ for hparams in "" ; do
         exit 1
     fi
 
-    # load model and resume training
+    # load model_utils and resume training
     python ./train.py --data_dir $CODEDIR/sample_data/output --init_checkpoint $WORKDIR/mt_dnn_models/bert_model_base_uncased.pt --batch_size 20 --batch_size_eval 20 --output_dir $WORKDIR/checkpoints/mt_dnn_results/ --log_file $WORKDIR/checkpoints/mt_dnn_results/log.log --answer_opt 0 --optimizer adamax --train_datasets mnli --test_datasets mnli_matched --grad_clipping 0 --global_grad_clipping 1 --learning_rate 5e-5 --log_per_updates 1 --epochs 2 --grad_accumulation_step 2 --resume --model_ckpt $WORKDIR/checkpoints/mt_dnn_results/model_1.pt
 
 
