@@ -58,9 +58,10 @@ A setup.py file is provided in order to package and simplify the installation of
 
     `pip install -e  git+git@github.com:namisan/mt-dnn@master#egg=mt-dnn`  
 
-Either command, from above, makes `mt-dnn` available in your conda virtual environment. You can verify it was properly installed by running:  
+    
+    Either command, from above, makes `mt-dnn` available in your environment. You can verify it was properly installed by running:  
 
-    pip list  
+    `pip list | grep -i mt-dnn`
 
 #### Use docker:
 1. Pull docker </br>
