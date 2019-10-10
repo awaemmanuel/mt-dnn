@@ -37,7 +37,7 @@ On the Variance of the Adaptive Learning Rate and Beyond <br/>
 #### Install via pip:  
 
 <details>
-<summary><strong><em>Python Version Pre-Requisites</em></strong></summary>
+<summary><strong><em>Python >= 3.6 Pre-Requisites</em></strong></summary>
 
 Python >= 3.6 - Reference to download and install : https://www.python.org/downloads/release/python-360/  
 
