@@ -49,7 +49,7 @@ A setup.py file is provided in order to package and simplify the installation of
 
 1. **INTERNAL DEPENDENCY DIRECTLY FROM THIS REPO:** To install the package from this repository, please run the command below (from directory root)
 
-    pip install -e .   
+    `pip install -e . `  
     
     
     Running the above command tells pip to install the `mt-dnn` package from source in [development mode](https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode). This just means that any updates to `mt-dnn` source directory will immediately be reflected in the installed package without needing to reinstall; a very useful practice for a package with constant updates.   
