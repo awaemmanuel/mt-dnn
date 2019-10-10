@@ -39,11 +39,12 @@ On the Variance of the Adaptive Learning Rate and Beyond <br/>
 <details>
 <summary><strong><em>Python >= 3.6 pre-requisite</em></strong></summary>
 
-Python >= 3.6 - Reference to download and install : https://www.python.org/downloads/release/python-360/  
+Python >= 3.6 is needed for this package. Please find reference to download and install [here](https://www.python.org/downloads/release/python-360/)  
 
 </details>  
 
-A setup.py file is provided in order to package and simplify the installation of this repository as a python module for extensibility.  
+A setup.py file is provided in order to package and simplify the installation of this repository as a python module for extensibility. It installs the required libraries needed and `mt-dnn` sources.  
+
     
 
 1. **INTERNAL DEPENDENCY DIRECTLY FROM THIS REPO:** To install the package from this repository, please run the command below (from directory root)
