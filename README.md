@@ -34,12 +34,32 @@ On the Variance of the Adaptive Learning Rate and Beyond <br/>
 ## Quickstart
 
 ### Setup Environment
-#### Install via pip:
-1. python3.6 </br>
-   Reference to download and install : https://www.python.org/downloads/release/python-360/
+#### Install via pip:  
 
-2. install requirements </br>
-   ```> pip install -r requirements.txt```
+<details>
+<summary><strong><em>Python Version Pre-Requisites</em></strong></summary>
+
+Python >= 3.6 - Reference to download and install : https://www.python.org/downloads/release/python-360/  
+
+</details>  
+
+A setup.py file is provided in order to package and simplify the installation of this repository as a python module for extensibility.  
+    
+
+1. **INTERNAL DEPENDENCY DIRECTLY FROM THIS REPO:** To install the package from this repository, please run the command below (from directory root)
+
+    pip install -e .   
+    
+    
+    Running the above command tells pip to install the `mt-dnn` package from source in [development mode](https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode). This just means that any updates to `mt-dnn` source directory will immediately be reflected in the installed package without needing to reinstall; a very useful practice for a package with constant updates.   
+
+1. **EXTERNAL DEPENDENCY FROM ANOTHER PROJECT:** it is also possible to install directly from Github, which is the best way to utilize the `mt-dnn` package in external projects (while still reflecting updates to the source as it's installed as an editable `'-e'` package). 
+
+    `pip install -e  git+git@https://github.com/namisan/mt-dnn@master#egg=mt-dnn`  
+
+Either command, from above, makes `mt-dnn` available in your conda virtual environment. You can verify it was properly installed by running:  
+
+    pip list  
 
 #### Use docker:
 1. Pull docker </br>

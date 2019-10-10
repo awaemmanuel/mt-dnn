@@ -28,7 +28,7 @@ def read(*names, **kwargs):
 
 
 setup(
-    name="mtdnn",
+    name="mt-dnn",
     license="MIT",
     description="Multi-Task Deep Neural Networks for Natural Language Understanding",
     long_description="%s"
@@ -98,7 +98,7 @@ setup(
         "apex",
         "fairseq",
     ],
-    entry_points={"console_scripts": ["mtdnn = mt_dnn.cli.main"]},
+    entry_points={"console_scripts": ["mt-dnn = mt_dnn.cli.main"]},
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
 )
