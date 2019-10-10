@@ -17,7 +17,7 @@ from os.path import join
 from os.path import splitext
 
 from setuptools import setup
-from setuptools import find_namespace_packages
+from setuptools import find_packages
 
 
 def read(*names, **kwargs):
@@ -40,7 +40,7 @@ setup(
     author="Xiaodong Liu",
     author_email="xiaodl@microsoft.com",
     url="https://github.com/namisan/mt-dnn",
-    packages=find_namespace_packages(where="src"),
+    packages=find_packages("src"),
     package_dir={"": "src"},
     py_modules=[splitext(basename(path))[0] for path in glob("src/*.py")],
     include_package_data=True,
