@@ -56,7 +56,7 @@ A setup.py file is provided in order to package and simplify the installation of
 
 1. **EXTERNAL DEPENDENCY FROM ANOTHER PROJECT:** it is also possible to install directly from Github, which is the best way to utilize the `mt-dnn` package in external projects (while still reflecting updates to the source as it's installed as an editable `'-e'` package). 
 
-    `pip install -e  git+git@github.com:namisan/mt-dnn@master#egg=mt-dnn`  
+    `pip install -e git+https://github.com/microsoft/mt-dnn@master#egg=mt-dnn`
 
     
     Either command, from above, makes `mt-dnn` available in your environment. You can verify it was properly installed by running:  
