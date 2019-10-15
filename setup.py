@@ -28,7 +28,7 @@ def read(*names, **kwargs):
 
 
 setup(
-    name="mt_dnn",
+    name="mtdnn",
     license="MIT",
     description="Multi-Task Deep Neural Networks for Natural Language Understanding",
     long_description="%s"
