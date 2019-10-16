@@ -1,0 +1,30 @@
+graft docs
+graft src
+graft ci
+graft tests
+
+prune sample_data
+prune scripts 
+
+include .bumpversion.cfg
+include .coveragerc
+include .editorconfig
+
+include AUTHORS.rst
+include CHANGELOG.rst
+include CONTRIBUTING.rst
+include LICENSE
+include README.rst
+
+include tox.ini .travis.yml appveyor.yml
+
+global-exclude *.py[cod] __pycache__ *.so *.dylib *.sh 
+
+exclude README.md
+exclude requirements.txt 
+exclude calc_metrics.py
+exclude extractor.py 
+exclude predict.py 
+exclude prepare_distillation_data.py 
+exclude prepro_std.py
+exclude train.py 
