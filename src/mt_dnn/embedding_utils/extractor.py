@@ -10,7 +10,7 @@ from src.mt_dnn.data_utils import create_logger
 from src.mt_dnn.data_utils.utils import set_environment
 from src.mt_dnn.models import BatchGen
 from src.mt_dnn.models.model import MTDNNModel
-from prepro_std import _truncate_seq_pair
+from src.mt_dnn.embedding_utils.prepro_std import _truncate_seq_pair
 from src.mt_dnn.data_utils import DataFormat, EncoderModelType
 
 logger = create_logger(

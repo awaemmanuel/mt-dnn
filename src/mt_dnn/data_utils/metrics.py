@@ -46,6 +46,7 @@ METRIC_FUNC = {
  Metric.AUC: compute_auc,
 }
 
+
 def calc_metrics(metric_meta, golds, predictions, scores):
     metrics = {}
     for mm in metric_meta:

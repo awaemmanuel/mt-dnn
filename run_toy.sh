@@ -5,5 +5,5 @@
 # Note that this is a toy setting and please refer our paper for detailed hyper-parameters.
 ############################### 
 
-python prepro.py
-python train.py
+python src/mt_dnn/embedding_utils/prepro_std.py
+python src/mt_dnn/embedding_utils/train.py
