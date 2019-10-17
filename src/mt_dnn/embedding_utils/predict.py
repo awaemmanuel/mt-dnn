@@ -3,12 +3,13 @@ import json
 import os
 import torch
 
-from src.mt_dnn.experiments.exp_def import TaskDefs, EncoderModelType
+from src.mt_dnn.experiments.exp_def import TaskDefs
+from src.mt_dnn.data_utils.task_def import EncoderModelType
 #from experiments.glue.glue_utils import eval_model
 
-from src.mt_dnn.models import BatchGen
+from src.mt_dnn.models.batcher import BatchGen
 from src.mt_dnn.models.model import MTDNNModel
-from src.mt_dnn.data_utils import calc_metrics
+from src.mt_dnn.data_utils.metrics import calc_metrics
 
 def dump(path, data):
     with open(path, 'w') as f:

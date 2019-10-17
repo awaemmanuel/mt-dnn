@@ -11,8 +11,8 @@ import torch.optim as optim
 from torch.optim.lr_scheduler import *
 from src.mt_dnn.data_utils.utils import AverageMeter
 from pytorch_pretrained_bert import BertAdam as Adam
-from src.mt_dnn.module import Adamax, RAdam
-from src.mt_dnn.module import EMA
+from src.mt_dnn.module.bert_optim import Adamax, RAdam
+from src.mt_dnn.module.my_optim import EMA
 from .matcher import SANBertNetwork
 
 from src.mt_dnn.data_utils import TaskType

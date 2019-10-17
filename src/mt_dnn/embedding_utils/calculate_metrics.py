@@ -1,6 +1,6 @@
 import argparse
 
-from src.mt_dnn.data_utils import load_data, load_score_file
+from src.mt_dnn.data_utils.data_loader import load_data, load_score_file
 from src.mt_dnn.data_utils.metrics import calc_metrics
 from src.mt_dnn.experiments.exp_def import TaskDefs
 

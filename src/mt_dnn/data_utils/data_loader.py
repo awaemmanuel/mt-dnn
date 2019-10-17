@@ -1,8 +1,12 @@
+#!/usr/bin/env python3
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 import json
 
 import numpy as np
 
-from src.mt_dnn.data_utils import TaskType, DataFormat
+from src.mt_dnn.data_utils.task_def import TaskType, DataFormat
 
 
 def load_data(file_path, data_format, task_type, label_dict=None):
@@ -26,11 +30,21 @@ def load_data(file_path, data_format, task_type, label_dict=None):
             row = {"uid": fields[0], "label": fields[1], "premise": fields[2]}
         elif data_format == DataFormat.PremiseAndOneHypothesis:
             assert len(fields) == 4
-            row = {"uid": fields[0], "label": fields[1], "premise": fields[2], "hypothesis": fields[3]}
+            row = {
+                "uid": fields[0],
+                "label": fields[1],
+                "premise": fields[2],
+                "hypothesis": fields[3],
+            }
         elif data_format == DataFormat.PremiseAndMultiHypothesis:
             assert len(fields) > 5
-            row = {"uid": fields[0], "ruid": fields[1].split(","), "label": fields[2], "premise": fields[3],
-                   "hypothesis": fields[4:]}
+            row = {
+                "uid": fields[0],
+                "ruid": fields[1].split(","),
+                "label": fields[2],
+                "premise": fields[3],
+                "hypothesis": fields[4:],
+            }
         else:
             raise ValueError(data_format)
 
@@ -57,12 +71,16 @@ def load_data(file_path, data_format, task_type, label_dict=None):
 def load_score_file(score_path, n_class):
     sample_id_2_pred_score_seg_dic = {}
     score_obj = json.loads(open(score_path, encoding="utf-8").read())
-    assert (len(score_obj["scores"]) % len(score_obj["uids"]) == 0) and \
-           (len(score_obj["scores"]) / len(score_obj["uids"]) == n_class), \
-        "scores column size should equal to sample count or multiple of sample count (for classification problem)"
+    assert (len(score_obj["scores"]) % len(score_obj["uids"]) == 0) and (
+        len(score_obj["scores"]) / len(score_obj["uids"]) == n_class
+    ), "scores column size should equal to sample count or multiple of sample count (for classification problem)"
 
     scores = score_obj["scores"]
-    score_segs = [scores[i * n_class: (i+1) * n_class] for i in range(len(score_obj["uids"]))]
-    for sample_id, pred, score_seg in zip(score_obj["uids"], score_obj["predictions"], score_segs):
+    score_segs = [
+        scores[i * n_class : (i + 1) * n_class] for i in range(len(score_obj["uids"]))
+    ]
+    for sample_id, pred, score_seg in zip(
+        score_obj["uids"], score_obj["predictions"], score_segs
+    ):
         sample_id_2_pred_score_seg_dic[sample_id] = (pred, score_seg)
     return sample_id_2_pred_score_seg_dic

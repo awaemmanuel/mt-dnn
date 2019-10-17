@@ -3,8 +3,7 @@
 import json
 import torch
 import random
-from src.mt_dnn.data_utils import TaskType, DataFormat
-from src.mt_dnn.data_utils import EncoderModelType
+from src.mt_dnn.data_utils.task_def import TaskType, DataFormat, EncoderModelType
 
 UNK_ID=100
 BOS_ID=101

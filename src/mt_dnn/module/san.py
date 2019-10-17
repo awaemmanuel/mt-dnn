@@ -7,7 +7,7 @@ from torch.nn.parameter import Parameter
 import torch.nn.functional as F
 from src.mt_dnn.module.dropout_wrapper import DropoutWrapper
 from src.mt_dnn.module.similarity import FlatSimilarityWrapper, SelfAttnWrapper
-from src.mt_dnn.module import weight_norm as WN
+from src.mt_dnn.module.my_optim import weight_norm as WN
 
 SMALL_POS_NUM=1.0e-30
 
