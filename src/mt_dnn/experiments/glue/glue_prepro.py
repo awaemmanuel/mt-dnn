@@ -6,7 +6,7 @@ from sys import path
 path.append(os.getcwd())
 from src.mt_dnn.experiments.common_utils import dump_rows
 
-from src.mt_dnn.data_utils import create_logger
+from src.mt_dnn.data_utils.log_wrapper import create_logger
 
 logger = create_logger(__name__, to_disk=True, log_file='glue_prepro.log')
 

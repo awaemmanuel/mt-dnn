@@ -6,13 +6,12 @@ import argparse
 import json
 from pytorch_pretrained_bert.tokenization import BertTokenizer
 import sentencepiece as spm
-from src.mt_dnn.data_utils import TaskType, DataFormat
-from src.mt_dnn.data_utils import create_logger
-from src.mt_dnn.data_utils import Vocabulary
-from src.mt_dnn.data_utils import get_encoder
-from src.mt_dnn.experiments.exp_def import TaskDefs, EncoderModelType
-from src.mt_dnn.data_utils import preprocess_text, encode_ids
-from src.mt_dnn.data_utils import CLS_ID, SEP_ID
+from src.mt_dnn.data_utils.task_def import TaskType, DataFormat, EncoderModelType
+from src.mt_dnn.data_utils.log_wrapper import create_logger
+from src.mt_dnn.data_utils.vocab import Vocabulary
+from src.mt_dnn.data_utils.gpt2_bpe import get_encoder
+from src.mt_dnn.experiments.exp_def import TaskDefs
+from src.mt_dnn.data_utils.xlnet_utils import preprocess_text, encode_ids, CLS_ID, SEP_ID
 from src.mt_dnn.experiments.squad import squad_utils
 
 DEBUG_MODE = False

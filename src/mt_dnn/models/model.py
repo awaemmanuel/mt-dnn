@@ -15,7 +15,7 @@ from src.mt_dnn.module.bert_optim import Adamax, RAdam
 from src.mt_dnn.module.my_optim import EMA
 from .matcher import SANBertNetwork
 
-from src.mt_dnn.data_utils import TaskType
+from src.mt_dnn.data_utils.task_def import TaskType
 
 logger = logging.getLogger(__name__)
 

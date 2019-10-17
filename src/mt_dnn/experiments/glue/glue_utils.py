@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft. All rights reserved.
 from random import shuffle
-from src.mt_dnn.data_utils import calc_metrics
+from src.mt_dnn.data_utils.metrics import calc_metrics
 
 
 def load_scitail(file):

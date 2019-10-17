@@ -1,4 +1,4 @@
-from src.mt_dnn.data_utils import DataFormat
+from src.mt_dnn.data_utils.task_def import DataFormat
 
 
 def dump_rows(rows, out_path):

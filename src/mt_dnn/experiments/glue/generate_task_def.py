@@ -1,6 +1,7 @@
-from src.mt_dnn.experiments.glue import TaskType, DATA_TYPE, GLOBAL_MAP, TASK_TYPE, DATA_META, METRIC_META, SAN_META
-from src.mt_dnn.data_utils import DataFormat
-from src.mt_dnn.data_utils import Metric
+from src.mt_dnn.experiments.glue.glue_label_map import TaskType, DATA_TYPE, GLOBAL_MAP, TASK_TYPE, DATA_META, \
+    METRIC_META, SAN_META
+from src.mt_dnn.data_utils.task_def import DataFormat
+from src.mt_dnn.data_utils.metrics import Metric
 
 task_def_dic = {}
 dropout_p_map = {
