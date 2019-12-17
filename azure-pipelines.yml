@@ -1,0 +1,51 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+#Any commit to this branch will trigger the build.
+trigger:
+  - master
+  - development
+
+# Pull request against these branches will trigger this build
+pr:
+  - master
+  - development
+
+jobs:
+  - job: mtdnn_unit_tests_linux
+    timeoutInMinutes: 10 # how long to run the job before automatically canceling
+    pool:
+      name: "emawa-pool"
+
+    steps:
+      - bash: echo "##vso[task.prependpath]/usr/share/miniconda/bin"
+        condition: eq(variables['Agent.OS'], 'Linux')
+        displayName: Add conda to PATH (Linux)
+
+      # Uncomment if needed
+      # Conda creation can take around 10min
+      # - bash: |
+      #     python tools/generate_conda_file.py --gpu
+      #     conda env create -n nlp_gpu -f nlp_gpu.yaml
+      #   displayName: 'Creating Conda Environment with dependencies'
+
+      - bash: |
+          pip install pytorch_pretrained_bert
+        displayName: "Install PyTorch Pretrained Bert"
+
+      - bash: |
+          pip install pytest pytest-azurepipelines
+        displayName: "Install PyTest"
+
+      - bash: |
+          source activate nlp_gpu
+          pytest --durations=0 tests --junitxml=junit/test-unitttest.xml -vv
+        displayName: "Activate Conda Env and Run Unit tests"
+
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFiles: "**/test-unitttest.xml"
+          testRunTitle: "Test results for PyTest"
+        condition: succeededOrFailed()
