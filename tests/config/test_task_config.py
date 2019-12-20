@@ -8,7 +8,7 @@ import pytest
 import os
 
 from unittest import TestCase
-from ..config.task_config import (
+from mt_dnn.config.task_config import (
     TaskConfig,
     CreateTaskConfig,
     SUPPORTED_TASKS_MAP,
