@@ -70,7 +70,7 @@ class TaskConfigTests(TestCase):
         kwargs.update({"task_name": "cola", "dropout_p": 0.05})
         config = CreateTaskConfig(**kwargs)
         path = tempfile.TemporaryDirectory()
-        config.save_config_file(save_directory=path.name)
+        config.save_pretrained(save_directory=path.name)
         self.assertTrue(os.path.exists(path.name))
 
     def test_create_task_config(self):
