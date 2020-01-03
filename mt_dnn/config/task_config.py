@@ -36,6 +36,14 @@ class TaskConfig(object):
         self.n_class = kwargs.pop("n_class", 2)
         self.task_type = kwargs.pop("task_type", "Classification")
 
+        # Additional attributes with no default values
+        for key, value in kwargs.items():
+            try:
+                setattr(self, key, value)
+            except AttributeError as err:
+                logger.error(f"Cannot set {key} with {value} for {self}")
+                raise err
+
 
 class COLATaskConfig(TaskConfig):
     def __init__(self, **kwargs: dict):
@@ -275,14 +283,14 @@ class CreateTaskConfig:
         with open(json_file_path, "w", encoding="utf-8") as fh:
             fh.write(self.to_json_string())
 
-    def save_config_file(self, save_directory: str = "/"):
+    def save_pretrained(self, save_directory: str = "/"):
         """ Save a configuration object to the directory `save_directory`"""
         assert os.path.isdir(
             save_directory
         ), "Saving path should be accessible to save the configuration file"
 
         # If we save using the predefined names, we can load using `from_pretrained`
-        output_config_file = os.path.join(save_directory, self._task_name)
+        output_config_file = os.path.join(save_directory, f"{self._task_name}.json")
 
         self.to_json_file(output_config_file)
         logger.info("Configuration saved in {}".format(output_config_file))
