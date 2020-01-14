@@ -5,6 +5,7 @@ import json
 path.append(os.getcwd())
 from data_utils.log_wrapper import create_logger
 from experiments.common_utils import dump_rows
+from data_utils import DataFormat
 
 logger = create_logger(__name__, to_disk=True, log_file='squad_prepro.log')
 
@@ -13,7 +14,7 @@ def normalize_qa_field(s: str, replacement_list):
         s = s.replace(replacement, " " * len(replacement))  # ensure answer_start and answer_end still valid
     return s
 
-END = 'EOSEOS'
+#END = 'EOSEOS'
 def load_data(path, is_train=True, v2_on=False):
     rows = []
     with open(path, encoding="utf8") as f:
@@ -40,9 +41,12 @@ def load_data(path, is_train=True, v2_on=False):
                     answer_end = answer_start + len(answer)
                 else:
                     # for questions without answers, give a fake answer
-                    answer = END
-                    answer_start = len(context) - len(END)
-                    answer_end = len(context)
+                    #answer = END
+                    #answer_start = len(context) - len(END)
+                    #answer_end = len(context)
+                    answer = ''
+                    answer_start = -1
+                    answer_end = -1
                 answer = normalize_qa_field(answer, ["\n", "\t", ":::"])
                 context = normalize_qa_field(context, ["\n", "\t"])
                 question = normalize_qa_field(question, ["\n", "\t"])
@@ -83,14 +87,14 @@ def main(args):
 
     squad_train_fout = os.path.join(canonical_data_root, 'squad_train.tsv')
     squad_dev_fout = os.path.join(canonical_data_root, 'squad_dev.tsv')
-    dump_rows(squad_train_data, squad_train_fout)
-    dump_rows(squad_dev_data, squad_dev_fout)
+    dump_rows(squad_train_data, squad_train_fout, DataFormat.PremiseAndOneHypothesis)
+    dump_rows(squad_dev_data, squad_dev_fout, DataFormat.PremiseAndOneHypothesis)
     logger.info('done with squad')
 
     squad_v2_train_fout = os.path.join(canonical_data_root, 'squad-v2_train.tsv')
     squad_v2_dev_fout = os.path.join(canonical_data_root, 'squad-v2_dev.tsv')
-    dump_rows(squad_v2_train_data, squad_v2_train_fout)
-    dump_rows(squad_v2_dev_data, squad_v2_dev_fout)
+    dump_rows(squad_v2_train_data, squad_v2_train_fout, DataFormat.PremiseAndOneHypothesis)
+    dump_rows(squad_v2_dev_data, squad_v2_dev_fout, DataFormat.PremiseAndOneHypothesis)
     logger.info('done with squad_v2')
 
 

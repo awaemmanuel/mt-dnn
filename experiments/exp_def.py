@@ -1,7 +1,10 @@
+# coding=utf-8
+# Copyright (c) Microsoft. All rights reserved.
 import yaml
 from data_utils.vocab import Vocabulary
 from data_utils.task_def import TaskType, DataFormat, EncoderModelType
 from data_utils.metrics import Metric
+from mt_dnn.loss import LossCriterion
 
 class TaskDefs:
     def __init__(self, task_def_path):
@@ -14,6 +17,9 @@ class TaskDefs:
         enable_san_map = {}
         dropout_p_map = {}
         encoderType_map = {}
+        loss_map = {}
+        kd_loss_map = {}
+
         uniq_encoderType = set()
         for task, task_def in self._task_def_dic.items():
             assert "_" not in task, "task name should not contain '_', current task name: %s" % task
@@ -32,6 +38,20 @@ class TaskDefs:
                 global_map[task] = label_mapper
             if "dropout_p" in task_def:
                 dropout_p_map[task] = task_def["dropout_p"]
+            # loss map
+            if "loss" in task_def:
+                t_loss = task_def["loss"]
+                loss_crt = LossCriterion[t_loss]
+                loss_map[task] = loss_crt
+            else:
+                loss_map[task] = None
+
+            if "kd_loss" in task_def:
+                t_loss = task_def["kd_loss"]
+                loss_crt = LossCriterion[t_loss]
+                kd_loss_map[task] = loss_crt
+            else:
+                kd_loss_map[task] = None
 
         assert len(uniq_encoderType) == 1, 'The shared encoder has to be the same.'
         self.global_map = global_map
@@ -42,3 +62,5 @@ class TaskDefs:
         self.enable_san_map = enable_san_map
         self.dropout_p_map = dropout_p_map
         self.encoderType = uniq_encoderType.pop()
+        self.loss_map = loss_map
+        self.kd_loss_map = kd_loss_map

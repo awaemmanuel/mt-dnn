@@ -8,13 +8,12 @@ class TaskType(IntEnum):
     Span = 4
     SeqenceLabeling = 5
 
-
-
 class DataFormat(IntEnum):
     PremiseOnly = 1
     PremiseAndOneHypothesis = 2
     PremiseAndMultiHypothesis = 3
-    Seqence = 4
+    MRC = 4
+    Seqence = 5
 
 class EncoderModelType(IntEnum):
     BERT = 1
